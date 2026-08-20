@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محلات نور الدين | عالم مستلزمات الخياطة والغزل</title>
-    <!-- FontAwesome & Google Fonts -->
+    <title>محلات نور الدين | مقصات ومستلزمات الخياطة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -32,7 +31,6 @@
             padding-bottom: 90px;
         }
 
-        /* Top Notification Bar */
         .top-bar {
             background: linear-gradient(90deg, #b45309, #d97706);
             color: #fff;
@@ -42,7 +40,6 @@
             font-weight: bold;
         }
 
-        /* Header Section */
         header {
             background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(12px);
@@ -66,7 +63,6 @@
             font-size: 24px;
             font-weight: 900;
             color: var(--accent-gold);
-            letter-spacing: 0.5px;
         }
 
         .logo-area p {
@@ -101,7 +97,6 @@
             font-size: 12px;
         }
 
-        /* Hero Banner */
         .hero {
             max-width: 1200px;
             margin: 20px auto;
@@ -110,8 +105,6 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
         .hero h2 {
@@ -122,39 +115,9 @@
 
         .hero p {
             color: var(--text-secondary);
-            max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Filter Chips */
-        .categories {
-            max-width: 1200px;
-            margin: 0 auto 25px;
-            display: flex;
-            gap: 10px;
-            padding: 0 20px;
-            overflow-x: auto;
-        }
-
-        .chip {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 8px 18px;
-            border-radius: 30px;
-            cursor: pointer;
-            white-space: nowrap;
-            font-size: 14px;
-        }
-
-        .chip.active, .chip:hover {
-            background: var(--accent-gold);
-            color: #000;
-            font-weight: bold;
-            border-color: var(--accent-gold);
-        }
-
-        /* Products Grid */
         .products-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -180,24 +143,12 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .product-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--accent-gold);
-            color: #000;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 20px;
-            z-index: 2;
-        }
-
         .product-img {
             width: 100%;
-            height: 230px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
+            height: 250px;
+            object-fit: contain;
+            background: #fff;
+            padding: 10px;
         }
 
         .product-info {
@@ -241,7 +192,6 @@
             color: #000;
         }
 
-        /* Sliding Cart Drawer */
         .cart-drawer {
             position: fixed;
             top: 0;
@@ -282,6 +232,32 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .qty-btn {
+            background: var(--border-color);
+            color: #fff;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
         .cart-footer {
             padding: 20px;
             border-top: 1px solid var(--border-color);
@@ -300,7 +276,6 @@
             display: block;
         }
 
-        /* Modal Form */
         .modal {
             display: none;
             position: fixed;
@@ -313,7 +288,6 @@
             width: 90%;
             max-width: 480px;
             z-index: 1002;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .modal-header {
@@ -367,13 +341,13 @@
 </head>
 <body>
 
-    <div class="top-bar">✨ شحن سريع لجميع المحافظات | أسعار خاصة للجملة والكميات ✨</div>
+    <div class="top-bar">✨ شحن سريع لجميع المحافظات | أفضل جودة وأقل أسعار ✨</div>
 
     <header>
         <div class="header-container">
             <div class="logo-area">
                 <h1>محلات نور الدين</h1>
-                <p>مستلزمات الخياطة والمصانع</p>
+                <p>قسم المقصات ومستلزمات الخياطة</p>
             </div>
             <div class="cart-icon-wrapper" onclick="toggleCart()">
                 <i class="fas fa-shopping-bag" style="color: var(--accent-gold);"></i>
@@ -384,24 +358,13 @@
     </header>
 
     <div class="hero">
-        <h2>أجود أنواع الخيوط ومستلزمات الملابس</h2>
-        <p>تصفح تشكيلتنا المميزة واطلب مباشرة عبر الموقع مع خيارات دفع متعددة</p>
-    </div>
-
-    <!-- Categories Filters -->
-    <div class="categories">
-        <div class="chip active">كل المنتجات</div>
-        <div class="chip">خيوط خياطة</div>
-        <div class="chip">خيوط تطريز</div>
-        <div class="chip">مستلزمات مصانع</div>
+        <h2>تشكيلة مقصات احترافية</h2>
+        <p>اختر المقاس والنوع المناسب واطلب مباشرة مع خيارات دفع متنوعة</p>
     </div>
 
     <!-- Products Grid -->
-    <div class="products-grid" id="productsContainer">
-        <!-- المنتجات هتحمل هنا أوتوماتيك من Google Sheet أو التكويت المباشر -->
-    </div>
+    <div class="products-grid" id="productsContainer"></div>
 
-    <!-- Overlay -->
     <div class="overlay" id="overlay" onclick="closeAll()"></div>
 
     <!-- Cart Drawer -->
@@ -410,9 +373,7 @@
             <h3><i class="fas fa-shopping-cart"></i> سلة المشتريات</h3>
             <button class="close-btn" onclick="toggleCart()">&times;</button>
         </div>
-        <div class="cart-body" id="cartItemsList">
-            <!-- عناصر السلة -->
-        </div>
+        <div class="cart-body" id="cartItemsList"></div>
         <div class="cart-footer">
             <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                 <span>الإجمالي:</span>
@@ -434,7 +395,7 @@
 
             <div class="form-group">
                 <label>الاسم بالكامل</label>
-                <input type="text" name="الاسم" required placeholder="أدخل اسمك الكريم">
+                <input type="text" name="الاسم" required placeholder="أدخل اسمك">
             </div>
 
             <div class="form-group">
@@ -456,7 +417,7 @@
             </div>
 
             <div id="vodaNotice" style="display:none; background: #334155; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 10px;">
-                يرجى تحويل المبلغ إلى الرقم: <strong>01005195460</strong> وكتابة اسم المحول أسفله.
+                يرجى تحويل المبلغ إلى الرقم: <strong>01005195460</strong> وكتابة اسم المحول بالأسفل.
             </div>
 
             <button type="submit" class="btn-submit">إرسال الطلب الآن</button>
@@ -464,24 +425,20 @@
     </div>
 
     <script>
-        // رابط Google Sheet الخاص بك (ضع رابط CSV هنا)
-        const sheetCsvUrl = 'YOUR_GOOGLE_SHEET_CSV_URL_HERE';
-
-        // المنتجات الاحتياطية في حال عدم الربط بعد
-        const defaultProducts = [
-            { title: "بكره خيط النجمه (ربع كيلو)", price: 50, image: "https://i.ibb.co/L8f3q0B/star-thread.jpg", badge: "الأكثر مبيعاً" },
-            { title: "بكره خيط سوده (نص كيلو)", price: 85, image: "https://i.ibb.co/3WfK9Vp/black-thread.jpg", badge: "مميز" }
+        const products = [
+            { title: "مقص أزرق", price: 15, image: "https://i.ibb.co/6P26L49/blue-scissors.png" },
+            { title: "مقص برتقالي (Eterna 6.5)", price: 25, image: "https://i.ibb.co/4MvRzpx/orange-scissors.png" },
+            { title: "مقص أسود احترافي (Stainless)", price: 40, image: "https://i.ibb.co/3Ypxn5C/black-scissors.png" }
         ];
 
         let cart = {};
 
-        function renderProducts(products) {
+        function renderProducts() {
             const container = document.getElementById('productsContainer');
             container.innerHTML = '';
             products.forEach(p => {
                 container.innerHTML += `
                     <div class="product-card">
-                        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
                         <img src="${p.image}" class="product-img" alt="${p.title}">
                         <div class="product-info">
                             <h3 class="product-title">${p.title}</h3>
@@ -495,29 +452,19 @@
             });
         }
 
-        function loadSheetData() {
-            if(!sheetCsvUrl || sheetCsvUrl.includes('YOUR_GOOGLE')) {
-                renderProducts(defaultProducts);
-                return;
-            }
-            fetch(sheetCsvUrl)
-                .then(res => res.text())
-                .then(csv => {
-                    const lines = csv.split('\n').slice(1);
-                    const products = lines.map(line => {
-                        const [title, price, image, badge] = line.split(',');
-                        return { title: title?.trim(), price: parseFloat(price), image: image?.trim(), badge: badge?.trim() };
-                    }).filter(p => p.title);
-                    renderProducts(products);
-                })
-                .catch(() => renderProducts(defaultProducts));
-        }
-
         function addToCart(title, price) {
             if(cart[title]) cart[title].qty++;
             else cart[title] = { price: price, qty: 1 };
             updateCart();
             toggleCart(true);
+        }
+
+        function changeQty(title, delta) {
+            if(cart[title]) {
+                cart[title].qty += delta;
+                if(cart[title].qty <= 0) delete cart[title];
+            }
+            updateCart();
         }
 
         function updateCart() {
@@ -534,7 +481,11 @@
                     <div class="cart-item">
                         <div>
                             <div><strong>${name}</strong></div>
-                            <small style="color:var(--text-secondary)">${cart[name].price} × ${cart[name].qty}</small>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty('${name}', -1)">-</button>
+                                <span>${cart[name].qty}</span>
+                                <button class="qty-btn" onclick="changeQty('${name}', 1)">+</button>
+                            </div>
                         </div>
                         <div style="color:var(--success-color); font-weight:bold;">${itemTotal} ج</div>
                     </div>
@@ -581,7 +532,7 @@
             document.getElementById('vodaNotice').style.display = method === 'فودافون كاش' ? 'block' : 'none';
         }
 
-        loadSheetData();
+        renderProducts();
     </script>
 </body>
 </html>
