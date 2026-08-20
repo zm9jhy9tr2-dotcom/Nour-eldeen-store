@@ -146,9 +146,8 @@
         .product-img {
             width: 100%;
             height: 250px;
-            object-fit: contain;
+            object-fit: cover;
             background: #fff;
-            padding: 10px;
         }
 
         .product-info {
@@ -362,12 +361,10 @@
         <p>اختر المقاس والنوع المناسب واطلب مباشرة مع خيارات دفع متنوعة</p>
     </div>
 
-    <!-- Products Grid -->
     <div class="products-grid" id="productsContainer"></div>
 
     <div class="overlay" id="overlay" onclick="closeAll()"></div>
 
-    <!-- Cart Drawer -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
             <h3><i class="fas fa-shopping-cart"></i> سلة المشتريات</h3>
@@ -383,7 +380,6 @@
         </div>
     </div>
 
-    <!-- Modal Form Checkout -->
     <div class="modal" id="checkoutModal">
         <div class="modal-header">
             <h3>إتمام الطلب</h3>
@@ -405,6 +401,7 @@
 
             <div class="form-group">
                 <label>العنوان بالتفصيل</label>
+
                 <textarea name="العنوان" required rows="2" placeholder="المحافظة - المدينة - الشارع"></textarea>
             </div>
 
@@ -426,9 +423,21 @@
 
     <script>
         const products = [
-            { title: "مقص أزرق", price: 15, image: "https://i.ibb.co/6P26L49/blue-scissors.png" },
-            { title: "مقص برتقالي (Eterna 6.5)", price: 25, image: "https://i.ibb.co/4MvRzpx/orange-scissors.png" },
-            { title: "مقص أسود احترافي (Stainless)", price: 40, image: "https://i.ibb.co/3Ypxn5C/black-scissors.png" }
+            { 
+                title: "مقص أطفالي", 
+                price: 15, 
+                image: "https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?w=500&auto=format&fit=crop&q=80" 
+            },
+            { 
+                title: "مقص أدوات منزلية", 
+                price: 25, 
+                image: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&auto=format&fit=crop&q=80" 
+            },
+            { 
+                title: "مقص أدوات المطبخ", 
+                price: 40, 
+                image: "https://images.unsplash.com/photo-1503792501406-2c40da09e1e2?w=500&auto=format&fit=crop&q=80" 
+            }
         ];
 
         let cart = {};
