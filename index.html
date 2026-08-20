@@ -20,7 +20,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding-bottom: 80px;
+            padding-bottom: 100px;
         }
 
         .container {
@@ -29,47 +29,31 @@
             padding: 20px;
         }
 
-        /* Header / Logo Theme */
         header {
             background: var(--primary-color);
             color: #fff;
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 4px solid var(--secondary-color);
         }
 
         header h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 28px;
             color: var(--secondary-color);
         }
 
         header .subtitle {
-            font-size: 18px;
+            font-size: 16px;
             margin-top: 5px;
         }
 
-        header .manager {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-top: 8px;
-        }
-
-        h2.section-title {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-size: 24px;
-            position: relative;
-        }
-
-        /* Grid & Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 20px;
         }
 
@@ -86,7 +70,7 @@
 
         .card img {
             width: 100%;
-            height: 160px;
+            height: 220px;
             object-fit: cover;
         }
 
@@ -104,7 +88,7 @@
         .price {
             color: #27ae60;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 15px;
         }
 
@@ -117,14 +101,9 @@
             cursor: pointer;
             font-weight: bold;
             width: 100%;
-            transition: 0.2s;
         }
 
-        .btn-add-cart:hover {
-            background: #b08d48;
-        }
-
-        /* Floating Cart Bar */
+        /* Cart Bar */
         .cart-bar {
             position: fixed;
             bottom: 0;
@@ -137,54 +116,108 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        .cart-btn-checkout {
+            background: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Modal / Checkout Window */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
             z-index: 1000;
-        }
-
-        .cart-btn-send {
-            background: #25d366;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Footer & Location */
-        footer {
-            margin-top: 50px;
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .location-btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+            align-items: center;
+            padding: 15px;
         }
 
-        .contact-item {
-            color: var(--primary-color);
-            text-decoration: none;
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .qty-btn {
+            background: #eee;
+            border: none;
+            padding: 3px 8px;
+            cursor: pointer;
             font-weight: bold;
+            border-radius: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .payment-info {
+            background: #eef7ed;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #c3e6cb;
+            margin-top: 8px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .btn-submit {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-close {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            float: left;
         }
     </style>
 </head>
@@ -194,98 +227,175 @@
         <header>
             <h1>محلات نور الدين</h1>
             <div class="subtitle">للوازم مصانع الملابس (جملة - قطاعي)</div>
-            <div class="manager">إدارة / أحمد نور الدين</div>
         </header>
 
-        <h2 class="section-title">الأصناف والمنتجات</h2>
+        <h2 style="text-align: center; color: var(--primary-color);">منتجات الخيوط</h2>
 
         <div class="grid">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=400" alt="بكر خيط">
+                <img src="https://i.ibb.co/L8f3q0B/star-thread.jpg" alt="بكره خيط النجمه">
                 <div class="card-body">
-                    <h3>بكر خيط خياطة</h3>
-                    <div class="price">15 جنيه</div>
-                    <button class="btn-add-cart" onclick="addToCart('بكر خيط خياطة', 15)"><i class="fas fa-cart-plus"></i> إضافة للسلة</button>
+                    <h3>بكره خيط النجمه (ربع كيلو)</h3>
+                    <div class="price">50 جنيه</div>
+                    <button class="btn-add-cart" onclick="addToCart('بكره خيط النجمه ربع كيلو', 50)"><i class="fas fa-cart-plus"></i> إضافة للسلة</button>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400" alt="زراير">
+                <img src="https://i.ibb.co/3WfK9Vp/black-thread.jpg" alt="بكره خيط سوده">
                 <div class="card-body">
-                    <h3>كيس زراير مشكل</h3>
-                    <div class="price">20 جنيه</div>
-                    <button class="btn-add-cart" onclick="addToCart('كيس زراير مشكل', 20)"><i class="fas fa-cart-plus"></i> إضافة للسلة</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?w=400" alt="مقصات">
-                <div class="card-body">
-                    <h3>مقص قماش صلب</h3>
+                    <h3>بكره خيط سوده (نص كيلو)</h3>
                     <div class="price">85 جنيه</div>
-                    <button class="btn-add-cart" onclick="addToCart('مقص قماش صلب', 85)"><i class="fas fa-cart-plus"></i> إضافة للسلة</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400" alt="مسدس شمع">
-                <div class="card-body">
-                    <h3>مسدس شمع 60 واط</h3>
-                    <div class="price">120 جنيه</div>
-                    <button class="btn-add-cart" onclick="addToCart('مسدس شمع 60 واط', 120)"><i class="fas fa-cart-plus"></i> إضافة للسلة</button>
+                    <button class="btn-add-cart" onclick="addToCart('بكره خيط سوده نص كيلو', 85)"><i class="fas fa-cart-plus"></i> إضافة للسلة</button>
                 </div>
             </div>
         </div>
-
-        <footer>
-            <a class="location-btn" href="https://maps.google.com/?q=شارع+الخان+طنطا" target="_blank">
-                <i class="fas fa-map-marker-alt"></i> موقع المحل: شارع الخان بجوار شركة أسعد
-            </a>
-            <div class="contact-links">
-                <a class="contact-item" href="tel:+201005195460"><i class="fas fa-phone"></i> 01005195460</a>
-                <a class="contact-item" href="tel:+201553955460"><i class="fas fa-mobile-alt"></i> 01553955460</a>
-                <a class="contact-item" href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> فيسبوك المحل</a>
-            </div>
-        </footer>
     </div>
 
     <!-- Floating Cart Bar -->
     <div class="cart-bar">
         <div>
-            <span>السلة: <strong id="cart-count">0</strong> منتجات</span> | 
+            <span>السلة: <strong id="cart-count">0</strong> منتج</span> | 
             <span>الإجمالي: <strong id="cart-total">0</strong> جنيه</span>
         </div>
-        <a class="cart-btn-send" href="#" onclick="sendWhatsAppOrder()"><i class="fab fa-whatsapp"></i> إرسال الطلب</a>
+        <button class="cart-btn-checkout" onclick="openCheckout()"><i class="fas fa-shopping-bag"></i> اتمام الطلب</button>
+    </div>
+
+    <!-- Modal Form Checkout -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeCheckout()">X</button>
+            <h3 style="margin-top: 0; color: var(--primary-color);">تفاصيل السلة والطلب</h3>
+            
+            <div id="cartItemsList"></div>
+            <hr>
+            <p><strong>الإجمالي الكلي: <span id="modalTotal">0</span> جنيه</strong></p>
+
+            <!-- Formspree Form to Send Order to Email -->
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                <input type="hidden" name="الطلبات" id="hiddenCartData">
+                <input type="hidden" name="الإجمالي" id="hiddenCartTotal">
+
+                <div class="form-group">
+                    <label>الاسم بالكامل:</label>
+                    <input type="text" name="اسم العميل" required placeholder="أدخل اسمك">
+                </div>
+
+                <div class="form-group">
+                    <label>رقم التليفون / الواتساب:</label>
+                    <input type="tel" name="رقم التليفون" required placeholder="01xxxxxxxx">
+                </div>
+
+                <div class="form-group">
+                    <label>العنوان بالتفصيل:</label>
+                    <textarea name="العنوان" required rows="2" placeholder="المحافظة - المدينة - اسم الشارع"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>طريقة الدفع المفضلة:</label>
+                    <select name="طريقة الدفع" id="paymentMethod" onchange="togglePaymentInfo()" required>
+                        <option value="دفع عند الاستلام">الدفع عند الاستلام (كاش)</option>
+                        <option value="فودافون كاش">فودافون كاش</option>
+                    </select>
+                </div>
+
+                <div class="payment-info" id="vodaInfo">
+                    يرجى تحويل المبلغ الإجمالي على رقم فودافون كاش: <strong>01005195460</strong> وإرفاق رقم العملية أو اسم المحول بالأسفل.
+                    <div style="margin-top: 5px;">
+                        <input type="text" name="رقم تحويل فودافون كاش" placeholder="رقم الموبايل المحول منه">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> تأكيد وإرسال الطلب</button>
+            </form>
+        </div>
     </div>
 
     <script>
-        let cart = [];
+        let cart = {};
 
-        function addToCart(title, price) {
-            cart.push({ title, price });
+        function addToCart(name, price) {
+            if (cart[name]) {
+                cart[name].qty += 1;
+            } else {
+                cart[name] = { price: price, qty: 1 };
+            }
             updateCartUI();
         }
 
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.length;
-            let total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('cart-total').innerText = total;
+        function changeQty(name, delta) {
+            if (cart[name]) {
+                cart[name].qty += delta;
+                if (cart[name].qty <= 0) {
+                    delete cart[name];
+                }
+            }
+            updateCartUI();
+            renderModalCart();
         }
 
-        function sendWhatsAppOrder() {
-            if (cart.length === 0) {
-                alert("السلة فارغة، أضف بعض المنتجات أولاً!");
+        function updateCartUI() {
+            let totalCount = 0;
+            let totalPrice = 0;
+            for (let name in cart) {
+                totalCount += cart[name].qty;
+                totalPrice += cart[name].qty * cart[name].price;
+            }
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('cart-total').innerText = totalPrice;
+            document.getElementById('modalTotal').innerText = totalPrice;
+        }
+
+        function openCheckout() {
+            if (Object.keys(cart).length === 0) {
+                alert("السلة فارغة، أضف منتجات أولاً!");
                 return;
             }
-            let message = "السلام عليكم، محتاج أطلب المنتجات دي من المحل:\n";
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.title} - ${item.price} جنيه\n`;
-            });
-            let total = cart.reduce((sum, item) => sum + item.price, 0);
-            message += `\nالإجمالي: ${total} جنيه`;
+            renderModalCart();
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
 
-            let encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/201005195460?text=${encodedMessage}`, '_blank');
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function renderModalCart() {
+            let container = document.getElementById('cartItemsList');
+            container.innerHTML = '';
+            let summaryText = '';
+            let totalPrice = 0;
+
+            for (let name in cart) {
+                let itemPrice = cart[name].qty * cart[name].price;
+                totalPrice += itemPrice;
+                summaryText += `${name} (عدد ${cart[name].qty}) - ${itemPrice} ج | `;
+
+                let div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <span><strong>${name}</strong></span>
+                    <div>
+                        <button class="qty-btn" onclick="changeQty('${name}', -1)">-</button>
+                        <span style="margin: 0 5px;">${cart[name].qty}</span>
+                        <button class="qty-btn" onclick="changeQty('${name}', 1)">+</button>
+                        <span style="margin-right: 10px; color: #27ae60;">${itemPrice} ج</span>
+                    </div>
+                `;
+                container.appendChild(div);
+            }
+
+            document.getElementById('hiddenCartData').value = summaryText;
+            document.getElementById('hiddenCartTotal').value = totalPrice + ' جنيه';
+        }
+
+        function togglePaymentInfo() {
+            let method = document.getElementById('paymentMethod').value;
+            let vodaBox = document.getElementById('vodaInfo');
+            if (method === 'فودافون كاش') {
+                vodaBox.style.display = 'block';
+            } else {
+                vodaBox.style.display = 'none';
+            }
         }
     </script>
 </body>
