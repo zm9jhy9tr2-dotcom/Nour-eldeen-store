@@ -1,165 +1,815 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>معرض المنتجات</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-      background-color: #0f172a;
-      color: #f8fafc;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .card {
-      background: #1e293b;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #334155;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    }
-    .img-box {
-      width: 100%;
-      height: 320px;
-      background-color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .img-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-    .info {
-      padding: 20px;
-      text-align: center;
-    }
-    .title {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #e2e8f0;
-      margin-bottom: 12px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #3b82f6;
-      color: #ffffff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s ease;
-    }
-    .btn:hover {
-      background-color: #2563eb;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>محلات نور الدين | عالم مستلزمات الخياطة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b1329;
+            --card-bg: #1c2541;
+            --card-inner: #0b132a;
+            --accent-gold: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.2);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --danger-color: #ef4444;
+            --success-color: #10b981;
+            --border-color: #334155;
+            --instapay-color: #8b5cf6;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            touch-action: manipulation;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            margin: 0;
+            padding-bottom: 90px;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .ticker-bar {
+            background: linear-gradient(90deg, #1e293b, #0f172a);
+            color: var(--accent-gold);
+            font-size: 12px;
+            padding: 6px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: bold;
+        }
+
+        header {
+            background: rgba(28, 37, 65, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 16px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #f59e0b, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-area p {
+            margin: 0;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .search-box {
+            max-width: 1200px;
+            margin: 15px auto 5px;
+            padding: 0 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 18px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            outline: none;
+            font-size: 14px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .categories {
+            max-width: 1200px;
+            margin: 12px auto;
+            padding: 0 16px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar { display: none; }
+
+        .cat-btn {
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--accent-gold);
+            color: #000;
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .products-grid {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-gold);
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 12px;
+            z-index: 2;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 160px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0 0 6px;
+            color: var(--text-primary);
+        }
+
+        .rating {
+            color: var(--accent-gold);
+            font-size: 10px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--success-color);
+            margin-bottom: 10px;
+        }
+
+        .btn-add {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 9px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-add:active {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 65px;
+            background: rgba(28, 37, 65, 0.95);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 99;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: var(--accent-gold);
+        }
+
+        .nav-badge {
+            position: absolute;
+            top: -4px;
+            right: 10px;
+            background: var(--danger-color);
+            color: #fff;
+            font-size: 10px;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-weight: bold;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; left: -100%;
+            width: 100%;
+            max-width: 380px;
+            height: 100%;
+            background: var(--card-bg);
+            box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-drawer.open { left: 0; }
+
+        .cart-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-body {
+            padding: 16px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .qty-btn {
+            background: var(--border-color);
+            color: #fff;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .qty-input {
+            width: 45px;
+            height: 26px;
+            text-align: center;
+            background: var(--card-inner);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--danger-color);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .coupon-box {
+            background: var(--card-inner);
+            border: 1px dashed var(--accent-gold);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .coupon-input-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .coupon-input {
+            flex-grow: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .coupon-btn {
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .discount-notice {
+            font-size: 11px;
+            color: var(--accent-gold);
+            margin-top: 6px;
+        }
+
+        .cart-footer {
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(11, 19, 41, 0.8);
+        }
+
+        .payment-box {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .copy-btn {
+            background: var(--border-color);
+            color: #fff;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            display: none;
+        }
+
+        .overlay.active { display: block; }
+
+        .checkout-section {
+            max-width: 1200px;
+            margin: 20px auto 80px;
+            padding: 20px 16px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .qr-card {
+            text-align: center;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .store-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .link-btn {
+            background: #25d366;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .link-btn.store {
+            background: var(--accent-gold);
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>قائمة المنتجات</h1>
-    <div class="grid">
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_9.png" alt="مقس مطبخ أسود">
-        </div>
-        <div class="info">
-          <div class="title">مقص مطبخ متعدد الاستخدامات</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_10.png" alt="مقص أزرق Bongione">
-        </div>
-        <div class="info">
-          <div class="title">مقص مكتب أزرق - Bongione</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_11.png" alt="مقص برتقالي Eterna">
-        </div>
-        <div class="info">
-          <div class="title">مقص احترافي برتقالي - Eterna</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_12.png" alt="بكرة خيط أسود">
-        </div>
-        <div class="info">
-          <div class="title">بكرة خيط أسود سميك</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_13.png" alt="مسدس شمع أزرق Etman">
-        </div>
-        <div class="info">
-          <div class="title">مسدس شمع أزرق - Etman Group</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_14.png" alt="بكرة خيط أبيض Star">
-        </div>
-        <div class="info">
-          <div class="title">بكرة خيط أبيض - Star</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="img-box">
-          <img src="image_15.png" alt="بكرة خيط رمادي AMA">
-        </div>
-        <div class="info">
-          <div class="title">بكرة خيط رمادي - AMA النموري</div>
-          <button class="btn">عرض التفاصيل</button>
-        </div>
-      </div>
-
+    <div class="ticker-bar">
+        🎁 استخدم كود الخصم <span style="text-decoration: underline;">noureldeen10</span> واحصل على خصومات حتى 10%!
     </div>
-  </div>
 
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <h1>محلات نور الدين</h1>
+                <p>عالم مستلزمات الخياطة والأدوات المنزلية</p>
+            </div>
+            <i class="fas fa-gem" style="color: var(--accent-gold); font-size: 20px;"></i>
+        </div>
+    </header>
+
+    <div class="search-box">
+        <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن منتج..." oninput="searchProducts()">
+    </div>
+
+    <div class="categories" id="categoriesContainer">
+        <button class="cat-btn active" onclick="filterCat('all', this)">الكل</button>
+        <button class="cat-btn" onclick="filterCat('خيوط', this)">الخيوط</button>
+        <button class="cat-btn" onclick="filterCat('مقصات', this)">المقصات</button>
+        <button class="cat-btn" onclick="filterCat('سوست', this)">السوست</button>
+    </div>
+
+    <div class="products-grid" id="productsContainer"></div>
+
+    <div class="checkout-section" id="infoSection">
+        <h3 style="margin-top:0; color:var(--accent-gold);">طرق الدفع والتواصل</h3>
+        
+        <div class="payment-box">
+            <div style="margin-bottom: 8px;"><i class="fas fa-wallet" style="color:var(--accent-gold);"></i> <strong>فودافون كاش:</strong> 01005195460 
+                <button class="copy-btn" onclick="copyNumber('01005195460')">نسخ</button>
+            </div>
+            <div><i class="fas fa-mobile-alt" style="color:var(--instapay-color);"></i> <strong>InstaPay (انستا باي):</strong> 01005195460 
+                <button class="copy-btn" onclick="copyNumber('01005195460')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="store-links">
+            <a href="https://wa.me/201005195460" target="_blank" class="link-btn">
+                <i class="fab fa-whatsapp"></i> تواصل عبر الواتساب
+            </a>
+            <a href="#" id="storeDirectLink" class="link-btn store">
+                <i class="fas fa-link"></i> رابط المتجر
+            </a>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h4 style="margin-bottom:5px;">رمز QR للمتجر:</h4>
+            <div class="qr-card">
+                <img id="qrImage" src="" alt="QR Code" width="120" height="120">
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="scrollToTop()">
+            <i class="fas fa-home"></i>
+            <span>الرئيسية</span>
+        </div>
+        <div class="nav-item" onclick="document.getElementById('categoriesContainer').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-th-large"></i>
+            <span>الأقسام</span>
+        </div>
+        <div class="nav-item" onclick="toggleCart(true)">
+            <i class="fas fa-shopping-bag"></i>
+            <span>السلة</span>
+            <span class="nav-badge" id="nav-cart-count">0</span>
+        </div>
+        <a href="https://wa.me/201005195460" target="_blank" class="nav-item" style="color:var(--text-secondary);">
+            <i class="fab fa-whatsapp"></i>
+            <span>واتساب</span>
+        </a>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3 style="margin:0;"><i class="fas fa-shopping-cart" style="color:var(--accent-gold);"></i> سلة المشتريات</h3>
+            <button style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;" onclick="toggleCart(false)">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsList"></div>
+        
+        <div class="cart-footer">
+            <div class="coupon-box">
+                <label style="font-size:11px; color:var(--text-secondary);">هل لديك كود خصم؟</label>
+                <div class="coupon-input-group">
+                    <input type="text" class="coupon-input" id="couponCode" placeholder="أدخل الكود هنا">
+                    <button class="coupon-btn" onclick="applyCoupon()">تطبيق</button>
+                </div>
+                <div class="discount-notice" id="discountNotice"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span>المجموع:</span>
+                <span id="cartSubtotal">0 ج.م</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color:var(--accent-gold);">
+                <span>الخصم:</span>
+                <span id="cartDiscount">0 ج.م</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; border-top:1px solid var(--border-color); padding-top:8px;">
+                <strong>الإجمالي النهائي:</strong>
+                <strong style="color: var(--success-color); font-size: 18px;"><span id="cartTotal">0</span> ج.م</strong>
+            </div>
+
+            <button class="btn-add" style="background: var(--accent-gold); color: #000; padding:12px; font-size:14px;" onclick="sendOrderWhatsApp()">
+                <i class="fab fa-whatsapp"></i> إرسال الطلب عبر الواتس
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { title: "مقص أطفالي", price: 15, cat: "مقصات", badge: "الأكثر طلباً", icon: "fa-scissors", image: "https://images.unsplash.com/photo-1584670503164-8846c4f03a6a?w=400&auto=format&fit=crop&q=80" },
+            { title: "بكرة خيط أبيض", price: 10, cat: "خيوط", badge: "", icon: "fa-scroll", image: "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=400&auto=format&fit=crop&q=80" },
+            { title: "طقم خيوط ألوان", price: 50, cat: "خيوط", badge: "مميز", icon: "fa-palette", image: "https://images.unsplash.com/photo-1528458909336-e7a0adfac1a5?w=400&auto=format&fit=crop&q=80" },
+            { title: "مقص أدوات منزلية", price: 25, cat: "مقصات", badge: "", icon: "fa-scissors", image: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=400&auto=format&fit=crop&q=80" },
+            { title: "مقص أدوات المطبخ", price: 40, cat: "مقصات", badge: "", icon: "fa-utensils", image: "https://images.unsplash.com/photo-1590736969955-71cc94801759?w=400&auto=format&fit=crop&q=80" },
+            { title: "سوستة بنطلون 20 سم", price: 5, cat: "سوست", badge: "", icon: "fa-grip-lines", image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop&q=80" },
+            { title: "سوستة جاكيت سحرية", price: 12, cat: "سوست", badge: "", icon: "fa-vest", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&auto=format&fit=crop&q=80" }
+        ];
+
+        let cart = {};
+        let currentCat = 'all';
+        let appliedCoupon = false;
+
+        function renderProducts(items = products) {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            items.forEach((p, idx) => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+                        <div class="img-container">
+                            <img src="${p.image}" class="product-img" alt="${p.title}" onerror="handleImgError(this, '${p.icon}')">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${p.title}</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="product-price">${p.price} ج.م</div>
+                            <button class="btn-add" onclick="addToCart('${p.title}', ${p.price})">
+                                <i class="fas fa-plus"></i> إضافة للسلة
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function handleImgError(img, iconClass) {
+            const container = img.parentElement;
+            container.style.background = 'var(--card-inner)';
+            container.innerHTML = `<i class="fas ${iconClass}" style="font-size: 50px; color: var(--accent-gold);"></i>`;
+        }
+
+        function filterCat(cat, btn) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+            
+            const filtered = cat === 'all' ? products : products.filter(p => p.cat === cat);
+            renderProducts(filtered);
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                (currentCat === 'all' || p.cat === currentCat) &&
+                p.title.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
+
+        function addToCart(title, price) {
+            if(cart[title]) cart[title].qty++;
+            else cart[title] = { price: price, qty: 1 };
+            updateCart();
+            toggleCart(true);
+        }
+
+        function changeQty(title, delta) {
+            if(cart[title]) {
+                cart[title].qty += delta;
+                if(cart[title].qty <= 0) delete cart[title];
+            }
+            updateCart();
+        }
+
+        function setQtyManual(title, val) {
+            let num = parseInt(val);
+            if(isNaN(num) || num <= 0) delete cart[title];
+            else cart[title].qty = num;
+            updateCart();
+        }
+
+        function deleteItem(title) {
+            delete cart[title];
+            updateCart();
+        }
+
+        function applyCoupon() {
+            const code = document.getElementById('couponCode').value.trim().toLowerCase();
+            if(code === "noureldeen10") {
+                appliedCoupon = true;
+                alert('تم تفعيل كود الخصم بنجاح!');
+            } else {
+                appliedCoupon = false;
+                alert('كود غير صحيح!');
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            let subtotal = 0, count = 0;
+            const container = document.getElementById('cartItemsList');
+            container.innerHTML = '';
+
+            for(let name in cart) {
+                let itemTotal = cart[name].qty * cart[name].price;
+                subtotal += itemTotal;
+                count += cart[name].qty;
+
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <div><strong>${name}</strong></div>
+                            <div style="color:var(--text-secondary); font-size:11px;">${cart[name].price} ج.م للقطعة</div>
+                            <div class="qty-controls">
+                                <button class="qty-btn" onclick="changeQty('${name}', -1)">-</button>
+                                <input type="number" class="qty-input" value="${cart[name].qty}" onchange="setQtyManual('${name}', this.value)">
+                                <button class="qty-btn" onclick="changeQty('${name}', 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="text-align: left;">
+                            <button class="delete-btn" onclick="deleteItem('${name}')"><i class="fas fa-trash-alt"></i></button>
+                            <div style="color:var(--success-color); font-weight:bold; margin-top:5px;">${itemTotal} ج</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            let discountPercent = 0;
+            let noticeText = "";
+
+            if(appliedCoupon) {
+                if(subtotal >= 600) {
+                    discountPercent = 0.10;
+                    noticeText = "🎉 حصلت على خصم 10% على أوردرك!";
+                } else if(subtotal >= 200) {
+                    discountPercent = 0.03;
+                    let remain = 600 - subtotal;
+                    noticeText = `🎉 حصلت على خصم 3%! زود مشترياتك بـ ${remain} ج.م واحصل على 10% خصم.`;
+                } else {
+                    let remain = 200 - subtotal;
+                    noticeText = `💡 أضف مشتريات بقيمة ${remain} ج.م للحصول على خصم 3%!`;
+                }
+            } else {
+                noticeText = "استخدم كود noureldeen10 للحصول على الخصم";
+            }
+
+            let discountAmount = subtotal * discountPercent;
+            let finalTotal = subtotal - discountAmount;
+
+            document.getElementById('nav-cart-count').innerText = count;
+            document.getElementById('cartSubtotal').innerText = subtotal + ' ج.م';
+            document.getElementById('cartDiscount').innerText = discountAmount.toFixed(1) + ' ج.م';
+            document.getElementById('cartTotal').innerText = finalTotal.toFixed(1);
+            document.getElementById('discountNotice').innerText = noticeText;
+        }
+
+        function toggleCart(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('overlay');
+            if(open) {
+                drawer.classList.add('open');
+                overlay.classList.add('active');
+            } else {
+                drawer.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+        }
+
+        function sendOrderWhatsApp() {
+            if(Object.keys(cart).length === 0) return alert('السلة فارغة!');
+            
+            let message = "السلام عليكم، حابب أطلب اوردر من محلات نور الدين:\n\n";
+            let subtotal = 0;
+
+            for(let item in cart) {
+                let itemTotal = cart[item].qty * cart[item].price;
+                subtotal += itemTotal;
+                message += `• ${item} (العدد: ${cart[item].qty}) - ${itemTotal} ج.م\n`;
+            }
+
+            let finalTotal = document.getElementById('cartTotal').innerText;
+            let discount = document.getElementById('cartDiscount').innerText;
+
+            message += `\nالمجموع: ${subtotal} ج.م`;
+            if(parseFloat(discount) > 0) {
+                message += `\nالخصم المطبق: ${discount}`;
+            }
+            message += `\nالإجمالي النهائي: ${finalTotal} ج.م`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201005195460?text=${encodedMessage}`, '_blank');
+        }
+
+        function copyNumber(num) {
+            navigator.clipboard.writeText(num);
+            alert('تم نسخ الرقم: ' + num);
+        }
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        const currentUrl = window.location.href;
+        document.getElementById('storeDirectLink').href = currentUrl;
+        document.getElementById('qrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentUrl)}`;
+
+        renderProducts();
+    </script>
 </body>
 </html>
